@@ -2,13 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --primary-text-color: #fff;
-    --secondary-text-color: #757575;
-    --btn-blue-text-color: #0C438D;
-    --btn-white-text-color: #fff;
-
-    --linear-color-left: #DFE9F3;
-    --linear-color-right: #fff;
+    --primary-color: #333333;
+    --text-color: #393E46;
+    --red-color: #903749;
+    --white-color: #EEEEEE;
   }
   
   * {
@@ -22,13 +19,21 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
-    font-family: 'Red Hat Text', sans-serif;
-    color: var(--primary-text-color);
-    background-image: url('/images/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    font-family: 'Cabin', sans-serif;
+    color: var(--text-color);
+    
   }
 
+  a {
+     text-decoration: none;
+     color: var(---text-color);
+  }
+
+
+  @media(min-width: 748px) {
+    body {
+        padding: 0 2rem;    
+    }
+  }
 `
 export default GlobalStyles
