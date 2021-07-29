@@ -28,10 +28,10 @@ function Header() {
 export default Header
 
 const StyledHeader = styled.header`
+  max-width: 1100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
   margin: 0 2rem;
   padding: 3rem 0;
 
@@ -39,10 +39,10 @@ const StyledHeader = styled.header`
     margin: 0 auto;
   }
 `
-const StyledLogo = styled.p`
+const StyledLogo = styled.h2`
   font-family: 'Exo 2', sans-serif;
   font-weight: 700;
-  font-size: 2.3rem;
+  font-size: 2rem;
   color: var(--primary-color);
   cursor: pointer;
 
@@ -62,7 +62,7 @@ const StyledNav = styled.nav`
   }
 
   .btn-login {
-    padding: 0.6rem 2.3rem;
+    padding: 0.7rem 2.3rem;
     border-radius: 0.8rem;
     border: 2px solid transparent;
     transition: all 200ms ease-in-out;

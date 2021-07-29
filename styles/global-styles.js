@@ -19,9 +19,14 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
+    
     font-family: 'Cabin', sans-serif;
     color: var(--text-color);
     
+  }
+
+  h1,h2,h3 {
+    font-family: 'Exo 2', sans-serif;
   }
 
   a {
