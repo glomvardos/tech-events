@@ -1,7 +1,9 @@
 import Hero from '../components/hero/hero'
 import AllEvents from '../components/events/all-events/all-events'
+import { getEvents } from '../helpers/getEvents'
 
 function Home({ allEvents }) {
+  console.log(getEvents())
   return (
     <section>
       <Hero />
@@ -13,9 +15,7 @@ function Home({ allEvents }) {
 export default Home
 
 export async function getStaticProps() {
-  const api_url = process.env.API_URL
-  const response = await fetch(`${api_url}/events`)
-  const data = await response.json()
+  const data = await getEvents()
   data.sort((a, b) => new Date(a.date) - new Date(b.date))
 
   return {

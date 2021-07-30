@@ -29,10 +29,10 @@ function Event({ title, brief, date, image, slug }) {
               <strong>{getDate[1]}</strong>
             </p>
           </StyledDateWrapper>
-          <StyledContentWrapper>
+          <div>
             <StyledTitle>{title}</StyledTitle>
             <StyledBrief>{brief}</StyledBrief>
-          </StyledContentWrapper>
+          </div>
         </StyledWrapper>
       </StyledEventContainer>
     </Link>
@@ -77,7 +77,7 @@ const StyledDateWrapper = styled.div`
     font-size: 1.9rem;
   }
 `
-const StyledContentWrapper = styled.div``
+
 const StyledTitle = styled.h4`
   font-size: 1.8rem;
   margin-bottom: 1rem;
