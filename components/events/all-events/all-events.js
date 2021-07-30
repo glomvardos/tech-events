@@ -1,14 +1,20 @@
 import styled from 'styled-components'
 import Search from '../../search/search'
 
-function AllEvents() {
+import Event from '../event/event'
+
+function AllEvents({ allEvents }) {
+  const displayEvents = allEvents.map(e => (
+    <Event key={e.id} title={e.title} brief={e.brief} date={e.date} slug={e.slug} image={e.image} />
+  ))
+
   return (
     <StyledMain>
       <StyledContainer>
         <StyledHeading>Upcoming Events</StyledHeading>
         <Search />
       </StyledContainer>
-      <StyledEventsGrid></StyledEventsGrid>
+      <StyledEventsGrid>{displayEvents}</StyledEventsGrid>
     </StyledMain>
   )
 }
@@ -39,4 +45,18 @@ const StyledHeading = styled.h3`
   }
 `
 
-const StyledEventsGrid = styled.div``
+const StyledEventsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+
+  @media (min-width: 635px) {
+    column-gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 900px) {
+    column-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`

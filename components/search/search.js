@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
   width: 160px;
   display: flex;
   align-items: center;
-  border: ${({ isFocus }) => (isFocus ? '2px solid var(--red-color)' : '2px solid #828282')};
+  border: ${({ isFocus }) => (isFocus ? '1px solid var(--red-color)' : '1px solid #828282')};
   border-radius: 8px;
   padding: 0.8rem;
 
@@ -35,7 +35,7 @@ const StyledContainer = styled.div`
     width: 200px;
   }
   @media (min-width: 550px) {
-    width: 260px;
+    width: 250px;
   }
 
   @media (min-width: 748px) {
