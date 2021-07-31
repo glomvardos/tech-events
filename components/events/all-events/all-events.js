@@ -1,11 +1,18 @@
 import styled from 'styled-components'
 import Search from '../../search/search'
 
-import Event from '../event/event'
+import EventCard from '../event-card/event-card'
 
 function AllEvents({ allEvents }) {
   const displayEvents = allEvents.map(e => (
-    <Event key={e.id} title={e.title} brief={e.brief} date={e.date} slug={e.slug} image={e.image} />
+    <EventCard
+      key={e.id}
+      title={e.title}
+      brief={e.brief}
+      date={e.date}
+      slug={e.slug}
+      image={e.image}
+    />
   ))
 
   return (
@@ -26,7 +33,7 @@ const StyledMain = styled.main`
   margin: 4rem 2rem 0 2rem;
 
   @media (min-width: 748px) {
-    margin: 5rem auto 0 auto;
+    margin: 10rem auto 0 auto;
   }
 `
 

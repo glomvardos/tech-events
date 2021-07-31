@@ -1,10 +1,11 @@
+import Event from '../../components/event-page/event-page'
 import { getEvents } from '../../helpers/getEvents'
 
-function Slug({ event }) {
-  return <h1>TEst</h1>
+function EventPage({ event }) {
+  return <Event event={event} />
 }
 
-export default Slug
+export default EventPage
 
 export async function getStaticProps(context) {
   const {
@@ -23,12 +24,12 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const data = await getEvents()
-  const slugsPaths = data.map(e => ({
+  const slugPaths = data.map(e => ({
     params: { slug: ['event', e.slug] },
   }))
 
   return {
-    paths: slugsPaths,
-    fallback: 'blocking',
+    paths: slugPaths,
+    fallback: false,
   }
 }

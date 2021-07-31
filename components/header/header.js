@@ -10,13 +10,13 @@ function Header() {
       <StyledNav>
         <ul>
           <li>
-            <Link href='/login'>
-              <a className='btn-login'>Login</a>
+            <Link href='/my-events'>
+              <a className='btn-myevent'>My Events</a>
             </Link>
           </li>
           <li>
-            <Link href='/signup'>
-              <a className='btn-signup'>Sign up</a>
+            <Link href='/login'>
+              <a className='btn-login'>Login</a>
             </Link>
           </li>
         </ul>
@@ -36,7 +36,7 @@ const StyledHeader = styled.header`
   padding: 3rem 0;
 
   @media (min-width: 748px) {
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
   }
 `
 const StyledLogo = styled.h2`
@@ -61,8 +61,8 @@ const StyledNav = styled.nav`
     }
   }
 
-  .btn-login {
-    padding: 0.7rem 2.3rem;
+  .btn-myevent {
+    padding: 0.7rem 1.8rem;
     border-radius: 0.8rem;
     border: 2px solid transparent;
     transition: all 200ms ease-in-out;
@@ -72,7 +72,7 @@ const StyledNav = styled.nav`
     }
   }
 
-  .btn-signup {
+  .btn-login {
     background-color: var(--red-color);
     color: var(--white-color);
     padding: 0.8rem 1.8rem;

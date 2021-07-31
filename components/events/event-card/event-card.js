@@ -2,9 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styled from 'styled-components'
 
-function Event({ title, brief, date, image, slug }) {
+function EventCard({ title, brief, date, image, slug }) {
   const getDate = new Date(date)
-    .toLocaleDateString('en', {
+    .toLocaleDateString('en-US', {
       day: '2-digit',
       month: 'short',
     })
@@ -39,7 +39,7 @@ function Event({ title, brief, date, image, slug }) {
   )
 }
 
-export default Event
+export default EventCard
 
 const StyledEventContainer = styled.div`
   background-color: var(--white-color);
@@ -84,5 +84,5 @@ const StyledTitle = styled.h4`
 `
 const StyledBrief = styled.p`
   font-size: 1.3rem;
-  line-height: 1.8rem;
+  line-height: 1.9rem;
 `

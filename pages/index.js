@@ -3,7 +3,6 @@ import AllEvents from '../components/events/all-events/all-events'
 import { getEvents } from '../helpers/getEvents'
 
 function Home({ allEvents }) {
-  console.log(getEvents())
   return (
     <section>
       <Hero />

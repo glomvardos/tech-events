@@ -7,19 +7,20 @@ function BgImage({ children, image }) {
 export default BgImage
 
 const StyledBgImage = styled.div`
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   background-image: ${({ image }) => `url(${image})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 200px;
+  height: 240px;
 
   @media (min-width: 748px) {
-    height: 450px;
+    height: 400px;
   }
 
   @media (min-width: 960px) {
-    height: 600px;
+    height: 500px;
+    border-radius: 8px;
   }
 `
