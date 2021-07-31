@@ -1,5 +1,7 @@
+import MyEvents from '../../components/my-events-page/my-events'
+
 function MyEventsPage() {
-  return <h1>My Events</h1>
+  return <MyEvents />
 }
 
 export default MyEventsPage

@@ -39,6 +39,7 @@ const StyledHeader = styled.header`
     margin: 0 auto 1rem auto;
   }
 `
+
 const StyledLogo = styled.h2`
   font-family: 'Exo 2', sans-serif;
   font-weight: 700;
@@ -50,6 +51,7 @@ const StyledLogo = styled.h2`
     font-size: 3rem;
   }
 `
+
 const StyledNav = styled.nav`
   font-size: 1.6rem;
   font-weight: 500;

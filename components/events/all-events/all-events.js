@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Search from '../../search/search'
-
 import EventCard from '../event-card/event-card'
+import StyledMain from '../../ui/main'
 
 function AllEvents({ allEvents }) {
   const displayEvents = allEvents.map(e => (
@@ -27,15 +27,6 @@ function AllEvents({ allEvents }) {
 }
 
 export default AllEvents
-
-const StyledMain = styled.main`
-  max-width: 1100px;
-  margin: 4rem 2rem 0 2rem;
-
-  @media (min-width: 748px) {
-    margin: 10rem auto 0 auto;
-  }
-`
 
 const StyledContainer = styled.div`
   display: flex;

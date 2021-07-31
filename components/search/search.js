@@ -34,6 +34,7 @@ const StyledContainer = styled.div`
   @media (min-width: 414px) {
     width: 200px;
   }
+
   @media (min-width: 550px) {
     width: 250px;
   }

@@ -54,11 +54,13 @@ const StyledEventContainer = styled.div`
     object-fit: cover;
   }
 `
+
 const StyledWrapper = styled.div`
   display: flex;
   padding: 2rem 1.4rem;
   min-height: 15rem;
 `
+
 const StyledDateWrapper = styled.div`
   width: 30%;
   display: flex;
@@ -82,6 +84,7 @@ const StyledTitle = styled.h4`
   font-size: 1.8rem;
   margin-bottom: 1rem;
 `
+
 const StyledBrief = styled.p`
   font-size: 1.3rem;
   line-height: 1.9rem;

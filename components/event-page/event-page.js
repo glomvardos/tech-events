@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import BgImage from '../ui/bg-image'
+import StyledMain from '../ui/main'
 
 function Event({ event }) {
   const date = new Date(event.date).toLocaleDateString('en-US', {
@@ -33,25 +34,6 @@ function Event({ event }) {
 
 export default Event
 
-const StyledMain = styled.main`
-  max-width: 1100px;
-  margin: 0 auto;
-  margin: 4rem 2rem 0 2rem;
-
-  h2 {
-    margin: 3rem 0 1.5rem 0;
-    font-size: 1.9rem;
-  }
-
-  @media (min-width: 748px) {
-    margin: 10rem auto 0 auto;
-
-    h2 {
-      font-size: 2.3rem;
-      margin: 5rem 0 1.5rem 0;
-    }
-  }
-`
 const StyledEventContent = styled.div`
   @media (min-width: 748px) {
     width: 60%;
@@ -65,11 +47,13 @@ const StyledTitle = styled.h1`
     font-size: 3.6rem;
   }
 `
+
 const StyledDescription = styled.p`
   font-size: 1.5rem;
   line-height: 2.2rem;
   color: var(--text-color);
 `
+
 const StyledDate = styled.time`
   font-size: 1.5rem;
 
@@ -77,6 +61,7 @@ const StyledDate = styled.time`
     margin: 0 0.3rem;
   }
 `
+
 const StyledEventLocation = styled.div`
   @media (min-width: 748px) {
     margin-left: 6rem;
@@ -85,7 +70,15 @@ const StyledEventLocation = styled.div`
 `
 
 const StyledFlexbox = styled.div`
+  h2 {
+    margin: 3rem 0 1.5rem 0;
+    font-size: 1.9rem;
+  }
   @media (min-width: 748px) {
     display: flex;
+    h2 {
+      font-size: 2.3rem;
+      margin: 5rem 0 1.5rem 0;
+    }
   }
 `
