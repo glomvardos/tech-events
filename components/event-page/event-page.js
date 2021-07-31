@@ -11,7 +11,7 @@ function Event({ event }) {
 
   return (
     <>
-      <BgImage image={event.image.formats.large.url} />
+      <BgImage image={event.image ? event.image.formats.large.url : `/images/defaultImage.jpg`} />
       <StyledMain>
         <StyledTitle>{event.title}</StyledTitle>
         <StyledFlexbox>
