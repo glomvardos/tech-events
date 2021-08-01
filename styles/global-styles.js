@@ -33,6 +33,9 @@ const GlobalStyles = createGlobalStyle`
      color: var(---text-color);
   }
 
+  button {
+    font-family: inherit;
+  }
 
   @media(min-width: 748px) {
     body {

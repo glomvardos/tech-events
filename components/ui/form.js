@@ -1,7 +1,13 @@
 import { useState } from 'react'
+import Image from 'next/image'
 import styled from 'styled-components'
+import Modal from './modal'
+import ImageUpload from './image-upload'
+
+import { FaImage } from 'react-icons/fa'
 
 function Form({ onSubmitHandler, event }) {
+  const [showModal, setShowModal] = useState(false)
   const [inputs, setInputs] = useState({
     title: event ? event.title : '',
     date: event ? event.date : '',
@@ -10,80 +16,130 @@ function Form({ onSubmitHandler, event }) {
     description: event ? event.description : '',
   })
 
+  const [imagePreview, setImagePreview] = useState(
+    event?.image ? event.image.formats.thumbnail.url : null
+  )
+
   function inputHandler(event) {
     const { name, value } = event.target
     setInputs(prevInputs => ({ ...prevInputs, [name]: value }))
   }
 
+  const showModalHandler = () => setShowModal(prevState => !prevState) // Show / Hide Modal
+
   return (
-    <StyledForm onSubmit={event => onSubmitHandler(event, inputs, setInputs)}>
-      <StyledInputContainer>
-        <StyledLabel htmlFor='title'>Title</StyledLabel>
-        <StyledInput
-          name='title'
-          id='title'
-          type='text'
-          placeholder='Event Title'
-          value={inputs.title}
-          onChange={inputHandler}
-        />
-      </StyledInputContainer>
-      <div className='flex'>
-        <div className='date-time'>
+    <>
+      {showModal && (
+        <Modal onClickHandler={showModalHandler}>
+          <ImageUpload
+            id={event.id}
+            showModalHandler={showModalHandler}
+            setImagePreview={setImagePreview}
+          />
+        </Modal>
+      )}
+      {event && (
+        <StyledImageContainer>
+          {imagePreview && <Image src={imagePreview} alt={event.title} width={177} height={100} />}
+          <StyledSetImageBtn type='button' onClick={showModalHandler}>
+            <FaImage /> Upload Image
+          </StyledSetImageBtn>
+        </StyledImageContainer>
+      )}
+      <StyledForm onSubmit={event => onSubmitHandler(event, inputs, setInputs)}>
+        <StyledInputContainer>
+          <StyledLabel htmlFor='title'>Title</StyledLabel>
+          <StyledInput
+            name='title'
+            id='title'
+            type='text'
+            placeholder='Event Title'
+            value={inputs.title}
+            onChange={inputHandler}
+          />
+        </StyledInputContainer>
+        <div className='flex'>
+          <div className='date-time'>
+            <StyledInputContainer>
+              <StyledLabel htmlFor='date'>Date</StyledLabel>
+              <StyledInput
+                name='date'
+                id='date'
+                type='date'
+                value={inputs.date}
+                onChange={inputHandler}
+              />
+            </StyledInputContainer>
+            <StyledInputContainer>
+              <StyledLabel htmlFor='time'>Time</StyledLabel>
+              <StyledInput
+                name='time'
+                id='time'
+                type='text'
+                placeholder='Event Time'
+                value={inputs.time}
+                onChange={inputHandler}
+              />
+            </StyledInputContainer>
+          </div>
           <StyledInputContainer>
-            <StyledLabel htmlFor='date'>Date</StyledLabel>
-            <StyledInput
-              name='date'
-              id='date'
-              type='date'
-              value={inputs.date}
-              onChange={inputHandler}
-            />
-          </StyledInputContainer>
-          <StyledInputContainer>
-            <StyledLabel htmlFor='time'>Time</StyledLabel>
-            <StyledInput
-              name='time'
-              id='time'
-              type='text'
-              placeholder='Event Time'
-              value={inputs.time}
+            <StyledLabel htmlFor='brief'>Brief Description</StyledLabel>
+            <StyledBriefText
+              name='brief'
+              id='brief'
+              rows='5'
+              placeholder='Add a brief event description...'
+              value={inputs.brief}
               onChange={inputHandler}
             />
           </StyledInputContainer>
         </div>
         <StyledInputContainer>
-          <StyledLabel htmlFor='brief'>Brief Description</StyledLabel>
-          <StyledBriefText
-            name='brief'
-            id='brief'
-            rows='5'
-            placeholder='Add a brief event description...'
-            value={inputs.brief}
+          <StyledLabel htmlFor='description'>Description</StyledLabel>
+          <StyledDescription
+            name='description'
+            id='description'
+            rows='12'
+            placeholder='Add your event description...'
+            value={inputs.description}
             onChange={inputHandler}
           />
         </StyledInputContainer>
-      </div>
-      <StyledInputContainer>
-        <StyledLabel htmlFor='description'>Description</StyledLabel>
-        <StyledDescription
-          name='description'
-          id='description'
-          rows='12'
-          placeholder='Add your event description...'
-          value={inputs.description}
-          onChange={inputHandler}
-        />
-      </StyledInputContainer>
-      <StyledButton>{event ? 'Edit Event' : 'Add Event'}</StyledButton>
-    </StyledForm>
+        <StyledButton>{event ? 'Edit Event' : 'Add Event'}</StyledButton>
+      </StyledForm>
+    </>
   )
 }
 
 export default Form
 
-const StyledForm = styled.form`
+const StyledImageContainer = styled.div`
   margin-top: 3rem;
+`
+
+const StyledSetImageBtn = styled.button`
+  font-weight: 500;
+  display: block;
+  background-color: var(--red-color);
+  color: var(--white-color);
+  padding: 0.5rem 0;
+  width: 177px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--primary-color);
+  }
+
+  svg {
+    margin: 0 0.2rem 0 0;
+  }
+`
+
+const StyledForm = styled.form`
+  margin-top: 1rem;
 
   @media (min-width: 650px) {
     .flex {

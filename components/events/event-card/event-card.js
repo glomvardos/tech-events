@@ -48,6 +48,14 @@ const StyledEventContainer = styled.div`
   img {
     border-radius: 8px 8px 0 0;
     object-fit: cover;
+    transition: transform 750ms cubic-bezier(0.5, 0, 0.5, 1), opacity 250ms linear;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+      opacity: 0.9;
+    }
   }
 `
 

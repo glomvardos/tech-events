@@ -15,6 +15,7 @@ function EditEvent({ event }) {
       },
     })
     const data = await response.json()
+
     router.push(`/event/${data.slug}`)
   }
 

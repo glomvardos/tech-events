@@ -33,7 +33,9 @@ function MyEvents({ events }) {
             </a>
           </Link>
 
-          <RiDeleteBin5Line onClick={() => deleteHandler(event.id)} />
+          <button type='button'>
+            <RiDeleteBin5Line onClick={() => deleteHandler(event.id)} />
+          </button>
         </StyledEventActions>
       </StyledEventContainer>
     )
@@ -95,9 +97,13 @@ const StyledEventContainer = styled.div`
   background-color: var(--white-color);
   border-radius: 4px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.3);
+  transition: all 300ms ease-in-out;
 
   @media (min-width: 748px) {
     padding: 5rem;
+    &:hover {
+      transform: translateY(-3%);
+    }
   }
 `
 
@@ -123,6 +129,11 @@ const StyledEventActions = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
+
+  button {
+    background-color: transparent;
+    border: none;
+  }
 
   svg {
     font-size: 1.8rem;
