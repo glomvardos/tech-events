@@ -15,6 +15,8 @@ export default Home
 
 export async function getStaticProps() {
   const data = await getEvents()
+
+  // sort for the most current event first
   data.sort((a, b) => new Date(a.date) - new Date(b.date))
 
   return {

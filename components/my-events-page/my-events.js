@@ -1,16 +1,53 @@
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styled from 'styled-components'
 import StyledMain from '../ui/main'
 
-function MyEvents() {
+import { BiEdit } from 'react-icons/bi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+
+function MyEvents({ events }) {
+  const router = useRouter()
+
+  async function deleteHandler(id) {
+    if (confirm('The event will be deleted. Are you sure?')) {
+      const apiUrl = process.env.API_URL
+      const response = await fetch(`${apiUrl}/events/${id}`, {
+        method: 'DELETE',
+      })
+      const data = await response.json()
+      router.replace('/my-events')
+    }
+  }
+
+  const displayEvents = events.map(event => {
+    return (
+      <StyledEventContainer key={event.id}>
+        <Link href={`/event/${event.slug}`}>
+          <StyledEventTitle>{event.title}</StyledEventTitle>
+        </Link>
+        <StyledEventActions>
+          <Link href='/'>
+            <a>
+              <BiEdit />
+            </a>
+          </Link>
+
+          <RiDeleteBin5Line onClick={() => deleteHandler(event.id)} />
+        </StyledEventActions>
+      </StyledEventContainer>
+    )
+  })
+
   return (
     <StyledMain>
       <StyledContainer>
         <StyledTitle>My Events</StyledTitle>
-        <Link href='my-events/add-event'>
+        <Link href='/my-events/add-event'>
           <a className='add-event'>Add Event</a>
         </Link>
       </StyledContainer>
+      <StyledEventGrid>{displayEvents}</StyledEventGrid>
     </StyledMain>
   )
 }
@@ -21,7 +58,7 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  margin-bottom: 2.5rem;
   .add-event {
     font-size: 1.8rem;
     font-weight: 500;
@@ -42,5 +79,67 @@ const StyledTitle = styled.h1`
 
   @media (min-width: 748px) {
     font-size: 3.6rem;
+  }
+`
+
+const StyledEventGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1.7rem;
+`
+const StyledEventContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  background-color: var(--white-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.3);
+
+  @media (min-width: 748px) {
+    padding: 5rem;
+  }
+`
+
+const StyledEventTitle = styled.h2`
+  cursor: pointer;
+  font-size: 1.8rem;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    color: var(--red-color);
+  }
+
+  @media (min-width: 500px) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 748px) {
+    font-size: 2.3rem;
+  }
+`
+
+const StyledEventActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+
+  svg {
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-bottom: 0.3rem;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+      color: var(--red-color);
+    }
+  }
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    svg {
+      font-size: 2.5rem;
+      margin-left: 1rem;
+    }
   }
 `

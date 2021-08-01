@@ -9,10 +9,10 @@ function Form({ onSubmitHandler }) {
     brief: '',
     description: '',
   })
-
+  
   function inputHandler(event) {
     const { name, value } = event.target
-    setInputs(prevInput => ({ ...prevInput, [name]: value }))
+    setInputs(prevInputs => ({ ...prevInputs, [name]: value }))
   }
 
   return (
