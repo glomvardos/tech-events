@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-function Form({ onSubmitHandler }) {
+function Form({ onSubmitHandler, event }) {
   const [inputs, setInputs] = useState({
-    title: '',
-    date: '',
-    time: '',
-    brief: '',
-    description: '',
+    title: event ? event.title : '',
+    date: event ? event.date : '',
+    time: event ? event.time : '',
+    brief: event ? event.brief : '',
+    description: event ? event.description : '',
   })
-  
+
   function inputHandler(event) {
     const { name, value } = event.target
     setInputs(prevInputs => ({ ...prevInputs, [name]: value }))
@@ -75,7 +75,7 @@ function Form({ onSubmitHandler }) {
           onChange={inputHandler}
         />
       </StyledInputContainer>
-      <StyledButton>Add Event</StyledButton>
+      <StyledButton>{event ? 'Edit Event' : 'Add Event'}</StyledButton>
     </StyledForm>
   )
 }

@@ -27,7 +27,7 @@ function MyEvents({ events }) {
           <StyledEventTitle>{event.title}</StyledEventTitle>
         </Link>
         <StyledEventActions>
-          <Link href='/'>
+          <Link href={`/my-events/${event.id}`}>
             <a>
               <BiEdit />
             </a>
