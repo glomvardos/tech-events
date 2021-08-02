@@ -8,8 +8,12 @@ import { RiDeleteBin5Line } from 'react-icons/ri'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useState } from 'react'
+
+let index = 5 // Index for showing more events
 
 function MyEvents({ events }) {
+  const [showEvents, setShowEvents] = useState(events.slice(0, 5))
   const router = useRouter()
 
   async function deleteHandler(id) {
@@ -33,7 +37,13 @@ function MyEvents({ events }) {
     }
   }
 
-  const displayEvents = events.map(event => {
+  // Show more events
+  function showMoreHandler() {
+    index += 3
+    setShowEvents(events.slice(0, index))
+  }
+
+  const displayEvents = showEvents.map(event => {
     return (
       <StyledEventContainer key={event.id}>
         <Link href={`/event/${event.slug}`}>
@@ -53,17 +63,22 @@ function MyEvents({ events }) {
       </StyledEventContainer>
     )
   })
-  console.log('Rendered')
+
   return (
     <StyledMain>
+      <ToastContainer style={{ fontSize: '1.6rem' }} />
       <StyledContainer>
-        <ToastContainer style={{ fontSize: '1.6rem' }} />
         <StyledTitle>My Events</StyledTitle>
         <Link href='/my-events/add-event'>
           <a className='add-event'>Add Event</a>
         </Link>
       </StyledContainer>
       <StyledEventGrid>{displayEvents}</StyledEventGrid>
+      {index <= events.length && (
+        <StyledButton onClick={showMoreHandler} type='button'>
+          Show More
+        </StyledButton>
+      )}
     </StyledMain>
   )
 }
@@ -103,6 +118,7 @@ const StyledEventGrid = styled.div`
   grid-template-columns: 1fr;
   row-gap: 1.7rem;
 `
+
 const StyledEventContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -166,5 +182,23 @@ const StyledEventActions = styled.div`
       font-size: 2.5rem;
       margin-left: 1rem;
     }
+  }
+`
+
+const StyledButton = styled.button`
+  display: block;
+  margin: 4rem auto 4rem auto;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background-color: var(--red-color);
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--primary-color);
   }
 `

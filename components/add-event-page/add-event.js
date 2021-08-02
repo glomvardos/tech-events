@@ -18,6 +18,11 @@ function AddEvent() {
       return
     }
 
+    if (new Date(inputs.date) < new Date()) {
+      toast.error('Invalid Date.')
+      return
+    }
+
     try {
       const response = await fetch(`${process.env.API_URL}/events`, {
         method: 'POST',

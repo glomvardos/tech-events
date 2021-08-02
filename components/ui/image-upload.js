@@ -9,7 +9,7 @@ function ImageUpload({ id, showModalHandler, setImagePreview }) {
 
   async function imageHandler(e) {
     e.preventDefault()
-    // Upload Image and connect it to the added event
+    // Upload image and connect it to the event
     const formData = new FormData()
     formData.append('files', image)
     formData.append('ref', 'event')
