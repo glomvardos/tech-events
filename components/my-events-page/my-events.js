@@ -6,17 +6,31 @@ import StyledMain from '../ui/main'
 import { BiEdit } from 'react-icons/bi'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function MyEvents({ events }) {
   const router = useRouter()
 
   async function deleteHandler(id) {
-    if (confirm('The event will be deleted. Are you sure?')) {
-      const apiUrl = process.env.API_URL
-      const response = await fetch(`${apiUrl}/events/${id}`, {
-        method: 'DELETE',
-      })
-      const data = await response.json()
-      router.replace('/my-events')
+    try {
+      if (confirm('The event will be deleted. Are you sure?')) {
+        const apiUrl = process.env.API_URL
+        const response = await fetch(`${apiUrl}/events/${id}`, {
+          method: 'DELETE',
+        })
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error('Failed to delete event.')
+        }
+        if (response.ok) {
+          toast.success('Success! The event has been deleted.')
+          router.replace('/my-events')
+        }
+      }
+    } catch (err) {
+      toast.error(err.message)
     }
   }
 
@@ -40,10 +54,11 @@ function MyEvents({ events }) {
       </StyledEventContainer>
     )
   })
-
+  console.log('Rendered')
   return (
     <StyledMain>
       <StyledContainer>
+        <ToastContainer style={{ fontSize: '1.6rem' }} />
         <StyledTitle>My Events</StyledTitle>
         <Link href='/my-events/add-event'>
           <a className='add-event'>Add Event</a>

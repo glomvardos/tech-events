@@ -3,24 +3,46 @@ import styled from 'styled-components'
 import StyledMain from '../ui/main'
 import Form from '../ui/form'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function EditEvent({ event }) {
   const router = useRouter()
   async function editHandler(e, inputs) {
     e.preventDefault()
-    const response = await fetch(`${process.env.API_URL}/events/${event.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(inputs),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    const data = await response.json()
 
-    router.push(`/event/${data.slug}`)
+    const formValidation = Object.values(inputs).some(input => input.trim() === '')
+
+    if (formValidation) {
+      toast.error('Please fill in all the fields.')
+      return
+    }
+
+    try {
+      const response = await fetch(`${process.env.API_URL}/events/${event.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(inputs),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.data.errors.title || data.data.errors.brief)
+      }
+
+      if (response.ok) {
+        router.push(`/event/${data.slug}`)
+      }
+    } catch (err) {
+      toast.error(err.message)
+    }
   }
 
   return (
     <StyledMain>
+      <ToastContainer style={{ fontSize: '1.6rem' }} />
       <StyledTitle>Edit Event</StyledTitle>
       <Form onSubmitHandler={editHandler} event={event} />
     </StyledMain>

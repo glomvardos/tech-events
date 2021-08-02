@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function ImageUpload({ id, showModalHandler, setImagePreview }) {
   const [image, setImage] = useState(null)
@@ -19,10 +21,15 @@ function ImageUpload({ id, showModalHandler, setImagePreview }) {
       body: formData,
     })
 
+    if (!response.ok) {
+      toast.error('Failed to update image')
+    }
+
     if (response.ok) {
       const res = await fetch(`${process.env.API_URL}/events/${id}`)
       const data = await res.json()
       setImagePreview(data.image.formats.thumbnail.url)
+      toast.success('The image has been updated!')
     }
     showModalHandler()
   }
@@ -31,7 +38,7 @@ function ImageUpload({ id, showModalHandler, setImagePreview }) {
     <StyledForm onSubmit={imageHandler}>
       <h2>Upload Image</h2>
       <StyledLabel htmlFor='image'>
-        <p>Click to choose an image </p>
+        <p>Choose an image </p>
         <p>{image && image.name}</p>
       </StyledLabel>
       <StyledInput id='image' type='file' onChange={e => setImage(e.target.files[0])} />
