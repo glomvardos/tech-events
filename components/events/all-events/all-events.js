@@ -3,7 +3,7 @@ import Search from '../../search/search'
 import EventCard from '../event-card/event-card'
 import StyledMain from '../../ui/main'
 
-function AllEvents({ allEvents }) {
+function AllEvents({ allEvents, text, children }) {
   const displayEvents = allEvents.map(e => (
     <EventCard
       key={e.id}
@@ -18,10 +18,11 @@ function AllEvents({ allEvents }) {
   return (
     <StyledMain>
       <StyledContainer>
-        <StyledHeading>Upcoming Events</StyledHeading>
+        <StyledHeading>{text}</StyledHeading>
         <Search />
       </StyledContainer>
       <StyledEventsGrid>{displayEvents}</StyledEventsGrid>
+      {children}
     </StyledMain>
   )
 }

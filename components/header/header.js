@@ -10,6 +10,11 @@ function Header() {
       <StyledNav>
         <ul>
           <li>
+            <Link href='/events'>
+              <a className='btn-myevent'>Events</a>
+            </Link>
+          </li>
+          <li>
             <Link href='/my-events'>
               <a className='btn-myevent'>My Events</a>
             </Link>

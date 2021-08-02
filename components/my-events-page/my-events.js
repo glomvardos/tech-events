@@ -15,8 +15,7 @@ function MyEvents({ events }) {
   async function deleteHandler(id) {
     try {
       if (confirm('The event will be deleted. Are you sure?')) {
-        const apiUrl = process.env.API_URL
-        const response = await fetch(`${apiUrl}/events/${id}`, {
+        const response = await fetch(`${process.env.API_URL}/events/${id}`, {
           method: 'DELETE',
         })
         const data = await response.json()
