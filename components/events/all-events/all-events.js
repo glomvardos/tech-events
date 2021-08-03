@@ -21,6 +21,7 @@ function AllEvents({ allEvents, text, children }) {
         <StyledHeading>{text}</StyledHeading>
         <Search />
       </StyledContainer>
+      {allEvents.length === 0 && <StyledResultMsg>No Events Found!</StyledResultMsg>}
       <StyledEventsGrid>{displayEvents}</StyledEventsGrid>
       {children}
     </StyledMain>
@@ -58,4 +59,9 @@ const StyledEventsGrid = styled.div`
     column-gap: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
   }
+`
+
+const StyledResultMsg = styled.p`
+  font-size: 2rem;
+  font-weight: bold;
 `
