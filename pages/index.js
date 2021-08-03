@@ -2,7 +2,6 @@ import Hero from '../components/hero/hero'
 import AllEvents from '../components/events/all-events/all-events'
 
 function Home({ allEvents }) {
-  console.log(new Date(allEvents[0].date))
   return (
     <section>
       <Hero />

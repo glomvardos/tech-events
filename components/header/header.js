@@ -69,13 +69,13 @@ const StyledNav = styled.nav`
   }
 
   .btn-myevent {
-    padding: 0.7rem 1.8rem;
-    border-radius: 0.8rem;
-    border: 2px solid transparent;
+    transition: all 200ms ease-in-out;
+    border-bottom: 2px solid transparent;
+    margin-left: 1rem;
     transition: all 200ms ease-in-out;
 
     &:hover {
-      border: 2px solid var(--primary-color);
+      border-bottom: 2px solid var(--red-color);
     }
   }
 
@@ -85,6 +85,7 @@ const StyledNav = styled.nav`
     padding: 0.8rem 1.8rem;
     border-radius: 0.8rem;
     transition: all 200ms ease-in-out;
+    margin-left: 1rem;
 
     &:hover {
       background-color: var(--primary-color);
