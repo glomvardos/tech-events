@@ -1,24 +1,43 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 function Search() {
   const [isFocus, setIsFocus] = useState(false)
+  const [searchInput, setSearchInput] = useState('')
 
-  const focusHandler = () => setIsFocus(true)
-  const blurHandler = () => setIsFocus(false)
+  const router = useRouter()
+
+  function onSubmitHandler(event) {
+    event.preventDefault()
+
+    if (searchInput.trim() === '') return
+
+    router.push(`/events/search?result=${searchInput}`)
+  }
 
   return (
-    <StyledContainer onFocus={focusHandler} onBlur={blurHandler} isFocus={isFocus}>
-      <StyledInput placeholder='Search for events' />
-      <AiOutlineSearch />
+    <StyledContainer
+      isFocus={isFocus}
+      onFocus={() => setIsFocus(true)}
+      onBlur={() => setIsFocus(false)}
+      onSubmit={onSubmitHandler}
+    >
+      <StyledInput
+        type='text'
+        value={searchInput}
+        onChange={e => setSearchInput(e.target.value)}
+        placeholder='Search for events'
+      />
+      <AiOutlineSearch onClick={onSubmitHandler} />
     </StyledContainer>
   )
 }
 
 export default Search
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.form`
   width: 160px;
   display: flex;
   align-items: center;

@@ -43,6 +43,12 @@ function MyEvents({ events }) {
     setShowEvents(events.slice(0, index))
   }
 
+  // Show less events
+  function showLessHandler() {
+    index = 5
+    setShowEvents(events.slice(0, index))
+  }
+
   const displayEvents = showEvents.map(event => {
     return (
       <StyledEventContainer key={event.id}>
@@ -74,9 +80,14 @@ function MyEvents({ events }) {
         </Link>
       </StyledContainer>
       <StyledEventGrid>{displayEvents}</StyledEventGrid>
-      {index <= events.length && (
+      {index < events.length && events.length > 5 && (
         <StyledButton onClick={showMoreHandler} type='button'>
           Show More
+        </StyledButton>
+      )}
+      {index > events.length && events.length > 5 && (
+        <StyledButton onClick={showLessHandler} type='button'>
+          Show Less
         </StyledButton>
       )}
     </StyledMain>

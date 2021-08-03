@@ -14,17 +14,6 @@ function Home({ allEvents }) {
 export default Home
 
 export async function getStaticProps() {
-  // const {
-  //   query: { term },
-  // } = context
-
-  // const query = qs.stringify({
-  //   _where: {
-  //     _or: [{ title_contains: term }, { description_contains: term }],
-  //   },
-  // })
-
-  // const response = await fetch(`${process.env.API_URL}/events?name_contains=${term}`)
   const response = await fetch(`${process.env.API_URL}/events?_sort=date:ASC`)
   const data = await response.json()
 
