@@ -20,7 +20,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link href='/login'>
+            <Link href='/auth'>
               <a className='btn-login'>Login</a>
             </Link>
           </li>
