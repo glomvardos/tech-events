@@ -28,7 +28,11 @@ function Auth() {
     const passwordInput = passwordRef.current.value
 
     // Form validation
-    if (usernameInput.trim() === '' || emailInput.trim() === '' || passwordInput.trim() === '') {
+    if (
+      (!isLogin && usernameInput.trim() === '') ||
+      emailInput.trim() === '' ||
+      passwordInput.trim() === ''
+    ) {
       toast.error('Please fill in all the fields.')
       return
     }
@@ -39,6 +43,7 @@ function Auth() {
       return
     }
 
+    //Sign up
     if (!isLogin) {
       try {
         const response = await fetch(`${process.env.API_URL}/auth/local/register`, {
@@ -58,6 +63,7 @@ function Auth() {
         if (response.ok) {
           toast.success('You have successfully signed up!')
 
+          // Reset inputs
           usernameRef.current.value = ''
           emailRef.current.value = ''
           passwordRef.current.value = ''
@@ -65,6 +71,38 @@ function Auth() {
 
         if (!response.ok) {
           throw new Error('Email or Username already taken.')
+        }
+      } catch (err) {
+        toast.error(err.message)
+      }
+    }
+
+    // Login
+    if (isLogin) {
+      try {
+        const response = await fetch(`${process.env.API_URL}/auth/local`, {
+          method: 'POST',
+          body: JSON.stringify({
+            identifier: emailInput,
+            password: passwordInput,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          toast.success('You have successfully logged in!')
+
+          // Reset inputs
+          emailRef.current.value = ''
+          passwordRef.current.value = ''
+        }
+
+        if (!response.ok) {
+          throw new Error('Invalid email or password')
         }
       } catch (err) {
         toast.error(err.message)
