@@ -11,7 +11,6 @@ export async function getServerSideProps(context) {
   const data = await getEvents()
 
   const { req } = context
-  console.log(req.headers.cookie)
 
   const transformedData = data.map(event => ({
     title: event.title,

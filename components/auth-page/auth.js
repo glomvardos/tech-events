@@ -51,7 +51,7 @@ function Auth() {
     //Sign up
     if (!isLogin) {
       try {
-        const response = await fetch(`${process.env.API_URL}/auth/local/register`, {
+        const response = await fetch('api/signup', {
           method: 'POST',
           body: JSON.stringify({
             username: usernameInput,
@@ -66,8 +66,8 @@ function Auth() {
         const data = await response.json()
 
         if (response.ok) {
-          toast.success('You have successfully signed up!')
-
+          dispatch(authActions.storeUser(data))
+          router.replace('/my-events')
           // Reset inputs
           usernameRef.current.value = ''
           emailRef.current.value = ''
@@ -153,7 +153,7 @@ function Auth() {
         </StyledContainer>
         <StyledButton>{isLogin ? 'Login' : 'Sign up'}</StyledButton>
         <StyledText>
-          {isLogin ? "You don't have an account?" : 'Already have an account?'}
+          {isLogin ? "Don't have an account?" : 'Already have an account?'}
           {isLogin ? (
             <span onClick={authFormHandler}>Sign up</span>
           ) : (

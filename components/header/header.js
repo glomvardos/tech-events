@@ -1,10 +1,25 @@
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { authActions } from '../../store/auth-slice'
 
 function Header() {
   const user = useSelector(state => state.auth.user)
-  console.log(user)
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  async function logoutHandler() {
+    const response = await fetch('api/logout', {
+      method: 'POST',
+    })
+    const data = await response.json()
+    if (response.ok) {
+      dispatch(authActions.storeUser(null))
+      router.replace('/')
+    }
+  }
+
   return (
     <StyledHeader>
       <Link href='/'>
@@ -24,11 +39,21 @@ function Header() {
               </Link>
             </li>
           )}
-          <li>
-            <Link href='/auth'>
-              <a className='btn-login'>{user ? 'Logout' : 'Login'}</a>
-            </Link>
-          </li>
+          {!user && (
+            <li>
+              <Link href='/auth'>
+                <a className='btn-login'>Login</a>
+              </Link>
+            </li>
+          )}
+
+          {user && (
+            <li>
+              <button type='button' onClick={logoutHandler} className='btn-logout'>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </StyledNav>
     </StyledHeader>
@@ -68,6 +93,7 @@ const StyledNav = styled.nav`
   ul {
     display: flex;
     list-style: none;
+    align-items: center;
     li {
       margin-left: 1rem;
     }
@@ -91,6 +117,21 @@ const StyledNav = styled.nav`
     border-radius: 0.8rem;
     transition: all 200ms ease-in-out;
     margin-left: 1rem;
+
+    &:hover {
+      background-color: var(--primary-color);
+    }
+  }
+  .btn-logout {
+    font-size: inherit;
+    background-color: var(--red-color);
+    color: var(--white-color);
+    padding: 0.8rem 1.8rem;
+    border-radius: 0.8rem;
+    transition: all 200ms ease-in-out;
+    margin-left: 1rem;
+    border: none;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--primary-color);
