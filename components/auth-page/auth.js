@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import StyledMain from '../ui/main'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
 import { FaUserAlt, FaLock } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
+import { authActions } from '../../store/auth-slice'
 
 function Auth() {
   const [isFocusEmail, setIsFocusEmail] = useState(false)
@@ -16,6 +18,9 @@ function Auth() {
   const usernameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
+
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const authFormHandler = () => setIsLogin(prevState => !prevState)
 
@@ -80,7 +85,7 @@ function Auth() {
     // Login
     if (isLogin) {
       try {
-        const response = await fetch(`${process.env.API_URL}/auth/local`, {
+        const response = await fetch(`api/login`, {
           method: 'POST',
           body: JSON.stringify({
             identifier: emailInput,
@@ -94,15 +99,15 @@ function Auth() {
         const data = await response.json()
 
         if (response.ok) {
-          toast.success('You have successfully logged in!')
-
+          dispatch(authActions.storeUser(data))
+          router.replace('/my-events')
           // Reset inputs
           emailRef.current.value = ''
           passwordRef.current.value = ''
         }
 
         if (!response.ok) {
-          throw new Error('Invalid email or password')
+          throw new Error('Wrong email or password')
         }
       } catch (err) {
         toast.error(err.message)

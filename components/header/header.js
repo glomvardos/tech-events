@@ -1,7 +1,10 @@
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 function Header() {
+  const user = useSelector(state => state.auth.user)
+  console.log(user)
   return (
     <StyledHeader>
       <Link href='/'>
@@ -14,14 +17,16 @@ function Header() {
               <a className='btn-myevent'>Events</a>
             </Link>
           </li>
-          <li>
-            <Link href='/my-events'>
-              <a className='btn-myevent'>My Events</a>
-            </Link>
-          </li>
+          {user && (
+            <li>
+              <Link href='/my-events'>
+                <a className='btn-myevent'>My Events</a>
+              </Link>
+            </li>
+          )}
           <li>
             <Link href='/auth'>
-              <a className='btn-login'>Login</a>
+              <a className='btn-login'>{user ? 'Logout' : 'Login'}</a>
             </Link>
           </li>
         </ul>
