@@ -1,13 +1,19 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { authActions } from '../../store/auth-slice'
+import { checkUser } from '../../store/auth-action'
 
 function Header() {
   const user = useSelector(state => state.auth.user)
   const dispatch = useDispatch()
   const router = useRouter()
+
+  useEffect(() => {
+    dispatch(checkUser())
+  }, [])
 
   async function logoutHandler() {
     const response = await fetch('api/logout', {

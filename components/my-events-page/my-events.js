@@ -12,7 +12,7 @@ import { useState } from 'react'
 
 let index = 5 // Index for showing more events
 
-function MyEvents({ events }) {
+function MyEvents({ events, jwt }) {
   const [showEvents, setShowEvents] = useState(events.slice(0, 5))
   const router = useRouter()
 
@@ -21,6 +21,9 @@ function MyEvents({ events }) {
       if (confirm('The event will be deleted. Are you sure?')) {
         const response = await fetch(`${process.env.API_URL}/events/${id}`, {
           method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
         })
         const data = await response.json()
 
@@ -29,7 +32,7 @@ function MyEvents({ events }) {
         }
         if (response.ok) {
           toast.success('Success! The event has been deleted.')
-          router.replace('/my-events')
+          router.reload()
         }
       }
     } catch (err) {

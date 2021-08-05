@@ -23,11 +23,11 @@ async function handler(req, res) {
   const data = await response.json()
 
   if (response.ok) {
-    res.status('200').json(data)
+    res.status(200).json(data)
   }
 
   if (!response.ok) {
-    res.status(`403`).json({ message: 'User forbidden' })
+    res.status(403).json({ message: 'User forbidden' })
   }
 }
 

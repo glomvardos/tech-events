@@ -1,5 +1,4 @@
 import Event from '../../components/event-page/event-page'
-import { getEvents } from '../../helpers/getEvents'
 
 function EventPage({ event }) {
   return <Event event={event} />
@@ -12,7 +11,8 @@ export async function getStaticProps(context) {
     params: { slug },
   } = context
 
-  const data = await getEvents()
+  const response = await fetch(`${process.env.API_URL}/events`)
+  const data = await response.json()
   const findEvent = data.find(e => e.slug === slug[1])
   return {
     props: {
@@ -23,7 +23,8 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const data = await getEvents()
+  const response = await fetch(`${process.env.API_URL}/events`)
+  const data = await response.json()
   const slugPaths = data.map(e => ({
     params: { slug: ['event', e.slug] },
   }))

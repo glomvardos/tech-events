@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Image from 'next/image'
 import styled from 'styled-components'
 import Modal from './modal'
-import ImageUpload from './image-upload'
+import ImageUpload from '../image-upload/image-upload'
 
 import { FaImage } from 'react-icons/fa'
 
-function Form({ onSubmitHandler, event }) {
+function Form({ onSubmitHandler, event, jwt }) {
   const [showModal, setShowModal] = useState(false)
   const [inputs, setInputs] = useState({
     title: event ? event.title : '',
@@ -35,6 +35,7 @@ function Form({ onSubmitHandler, event }) {
             id={event.id}
             showModalHandler={showModalHandler}
             setImagePreview={setImagePreview}
+            jwt={jwt}
           />
         </Modal>
       )}

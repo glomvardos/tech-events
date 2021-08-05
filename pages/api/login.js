@@ -34,7 +34,7 @@ async function handler(req, res) {
       })
     )
 
-    res.status('200').json(data.user)
+    res.status(200).json(data.user)
   }
 
   if (!response.ok) {

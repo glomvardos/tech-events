@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-function ImageUpload({ id, showModalHandler, setImagePreview }) {
+function ImageUpload({ id, showModalHandler, setImagePreview, jwt }) {
   const [image, setImage] = useState(null)
 
   async function imageHandler(e) {
@@ -19,6 +19,9 @@ function ImageUpload({ id, showModalHandler, setImagePreview }) {
     const response = await fetch(`${process.env.API_URL}/upload`, {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
     })
 
     if (!response.ok) {

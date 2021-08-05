@@ -1,16 +1,30 @@
 import MyEvents from '../../components/my-events-page/my-events'
-import { getEvents } from '../../helpers/getEvents'
+import { getToken } from '../../helpers/getToken'
 
-function MyEventsPage({ events }) {
-  return <MyEvents events={events} />
+function MyEventsPage({ events, jwt }) {
+  return <MyEvents events={events} jwt={jwt} />
 }
 
 export default MyEventsPage
 
 export async function getServerSideProps(context) {
-  const data = await getEvents()
+  const jwt = getToken(context.req)
+  if (!jwt) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
 
-  const { req } = context
+  const response = await fetch(`${process.env.API_URL}/events/me`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+  const data = await response.json()
 
   const transformedData = data.map(event => ({
     title: event.title,
@@ -21,6 +35,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       events: transformedData,
+      jwt,
     },
   }
 }

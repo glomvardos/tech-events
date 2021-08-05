@@ -1,16 +1,7 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import Hero from '../components/hero/hero'
 import AllEvents from '../components/events/all-events/all-events'
-import { checkUser } from '../store/auth-action'
 
 function Home({ allEvents }) {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(checkUser())
-  }, [])
-
   return (
     <section>
       <Hero />

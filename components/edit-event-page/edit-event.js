@@ -6,7 +6,7 @@ import Form from '../ui/form'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-function EditEvent({ event }) {
+function EditEvent({ event, jwt }) {
   const router = useRouter()
   async function editHandler(e, inputs) {
     e.preventDefault()
@@ -28,6 +28,7 @@ function EditEvent({ event }) {
         method: 'PUT',
         body: JSON.stringify(inputs),
         headers: {
+          Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json',
         },
       })
@@ -49,7 +50,7 @@ function EditEvent({ event }) {
     <StyledMain>
       <ToastContainer style={{ fontSize: '1.6rem' }} />
       <StyledTitle>Edit Event</StyledTitle>
-      <Form onSubmitHandler={editHandler} event={event} />
+      <Form onSubmitHandler={editHandler} event={event} jwt={jwt} />
     </StyledMain>
   )
 }

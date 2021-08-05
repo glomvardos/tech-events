@@ -6,7 +6,7 @@ import StyledMain from '../ui/main'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-function AddEvent() {
+function AddEvent({ jwt }) {
   const router = useRouter()
   async function addEventHandler(event, inputs, fn) {
     event.preventDefault()
@@ -28,6 +28,7 @@ function AddEvent() {
         method: 'POST',
         body: JSON.stringify(inputs),
         headers: {
+          Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json',
         },
       })

@@ -21,7 +21,7 @@ async function handler(req, res) {
   })
 
   const data = await response.json()
-  console.log(data)
+
   if (response.ok) {
     // Store jwt
     res.setHeader(
@@ -35,7 +35,7 @@ async function handler(req, res) {
       })
     )
 
-    res.status('200').json(data.user)
+    res.status(200).json(data.user)
   }
 
   if (!response.ok) {
