@@ -51,6 +51,7 @@ const StyledEventContainer = styled.div`
     border-radius: 8px 8px 0 0;
   }
   img {
+    border-radius: 8px 8px 0 0;
     object-fit: cover;
     transition: transform 750ms cubic-bezier(0.5, 0, 0.5, 1), opacity 250ms linear;
   }

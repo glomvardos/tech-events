@@ -74,7 +74,6 @@ const StyledInput = styled.input`
 
   &::placeholder {
     font-size: 1.2rem;
-    color: #bdbdbd;
   }
 
   &:focus {
