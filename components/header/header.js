@@ -121,10 +121,10 @@ const StyledNav = styled.nav`
   .btn-login {
     background-color: var(--red-color);
     color: var(--white-color);
-    padding: 1rem 1.6rem;
+    padding: 1rem 1.8rem;
     border-radius: 0.8rem;
     transition: all 200ms ease-in-out;
-    margin-left: 1.2rem;
+    margin-left: 1rem;
 
     &:hover {
       background-color: var(--primary-color);
