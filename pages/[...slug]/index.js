@@ -27,19 +27,5 @@ export async function getServerSideProps(context) {
     props: {
       event: data[0] || [],
     },
-    // revalidate: 1,
   }
 }
-
-// export async function getStaticPaths() {
-//   const response = await fetch(`${process.env.API_URL}/events`)
-//   const data = await response.json()
-//   const slugPaths = data.map(e => ({
-//     params: { slug: ['event', e.slug] },
-//   }))
-
-//   return {
-//     paths: slugPaths,
-//     fallback: 'blocking',
-//   }
-// }
