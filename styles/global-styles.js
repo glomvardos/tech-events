@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     --primary-color: #333333;
     --text-color: #393E46;
     --red-color: #903749;
-    --white-color: #EEEEEE;
+    --white-color: #f2f2f2;
   }
   
   * {
@@ -36,6 +36,10 @@ const GlobalStyles = createGlobalStyle`
 
   button {
     font-family: inherit;
+  }
+
+  input {
+    background-color: transparent;
   }
 
 

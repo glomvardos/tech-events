@@ -13,13 +13,15 @@ function EventCard({ title, brief, date, image, slug }) {
   return (
     <Link href={`/event/${slug}`}>
       <StyledEventContainer>
-        <Image
-          src={image ? image.formats.medium.url : `/images/defaultImage.jpg`}
-          alt={title}
-          width={400}
-          height={200}
-          layout='responsive'
-        />
+        <div>
+          <Image
+            src={image ? image.formats.medium.url : `/images/defaultImage.jpg`}
+            alt={title}
+            width={400}
+            height={200}
+            layout='responsive'
+          />
+        </div>
 
         <StyledWrapper>
           <StyledDateWrapper>
@@ -45,8 +47,10 @@ const StyledEventContainer = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
   cursor: pointer;
 
-  img {
+  div {
     border-radius: 8px 8px 0 0;
+  }
+  img {
     object-fit: cover;
     transition: transform 750ms cubic-bezier(0.5, 0, 0.5, 1), opacity 250ms linear;
   }
