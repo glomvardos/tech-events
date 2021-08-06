@@ -31,6 +31,6 @@ export async function getStaticPaths() {
 
   return {
     paths: slugPaths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
