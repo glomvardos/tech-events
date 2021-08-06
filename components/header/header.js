@@ -78,6 +78,7 @@ const StyledHeader = styled.header`
 
   @media (min-width: 748px) {
     margin: 0 auto 1rem auto;
+    width: 100%;
   }
 `
 
@@ -108,8 +109,9 @@ const StyledNav = styled.nav`
   .btn-myevent {
     transition: all 200ms ease-in-out;
     border-bottom: 2px solid transparent;
-    margin-left: 1rem;
+    margin-left: 0.3rem;
     transition: all 200ms ease-in-out;
+    padding-bottom: 0.3rem;
 
     &:hover {
       border-bottom: 2px solid var(--red-color);
@@ -119,28 +121,42 @@ const StyledNav = styled.nav`
   .btn-login {
     background-color: var(--red-color);
     color: var(--white-color);
-    padding: 0.8rem 1.8rem;
+    padding: 1rem 1.6rem;
     border-radius: 0.8rem;
     transition: all 200ms ease-in-out;
-    margin-left: 1rem;
+    margin-left: 1.2rem;
 
     &:hover {
       background-color: var(--primary-color);
     }
   }
+
   .btn-logout {
     font-size: inherit;
     background-color: var(--red-color);
     color: var(--white-color);
-    padding: 0.8rem 1.8rem;
+    padding: 0.8rem 1.2rem;
     border-radius: 0.8rem;
     transition: all 200ms ease-in-out;
-    margin-left: 1rem;
+    margin-left: 0.3rem;
     border: none;
     cursor: pointer;
 
     &:hover {
       background-color: var(--primary-color);
+    }
+  }
+
+  @media (min-width: 414px) {
+    .btn-logout {
+      padding: 0.8rem 1.6rem;
+      margin-left: 1rem;
+    }
+
+    .btn-myevent {
+      margin-left: 1rem;
+      transition: all 200ms ease-in-out;
+      padding-bottom: 0.3rem;
     }
   }
 

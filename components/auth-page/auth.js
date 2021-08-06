@@ -168,7 +168,7 @@ function Auth() {
 export default Auth
 
 const StyledForm = styled.form`
-  margin: 5rem auto 0 auto;
+  margin: 3rem auto 3rem auto;
   background-color: var(--white-color);
   padding: 3rem 4rem;
   max-width: 500px;
@@ -182,7 +182,7 @@ const StyledForm = styled.form`
   }
 
   @media (min-width: 470px) {
-    margin: 10rem auto 0 auto;
+    margin: 2rem auto 0 auto;
     padding: 5rem 7rem;
   }
 `

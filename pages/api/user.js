@@ -7,7 +7,7 @@ async function handler(req, res) {
   }
 
   if (!req.headers.cookie) {
-    res.status(403)
+    res.status(403).json({ message: 'Not Authorized' })
     return
   }
 

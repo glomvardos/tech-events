@@ -14,6 +14,6 @@ const StyledFooter = styled.footer`
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 9rem;
+  margin-top: auto;
   padding: 1rem 0;
 `

@@ -17,10 +17,11 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
-  
+
   body {
     font-family: 'Cabin', sans-serif;
     color: var(--text-color);
+  
   }
 
   h1,h2,h3,h4 {
@@ -35,6 +36,13 @@ const GlobalStyles = createGlobalStyle`
 
   button {
     font-family: inherit;
+  }
+
+
+  #__next {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   @media(min-width: 748px) {
