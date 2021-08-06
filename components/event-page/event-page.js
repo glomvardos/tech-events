@@ -22,10 +22,8 @@ function Event({ event }) {
           <StyledDate>
             {date} <span>at</span> {event.time}
           </StyledDate>
-          <StyledEventLocation>
-            <h2>Event Address</h2>
-            <StyledAddress>{event.address}</StyledAddress>
-          </StyledEventLocation>
+          <h2>Event Address</h2>
+          <StyledAddress>{event.address}</StyledAddress>
         </StyledEventContent>
       </StyledMain>
     </>
@@ -84,11 +82,5 @@ const StyledAddress = styled.p`
 
   @media (min-width: 748px) {
     font-size: 1.8rem;
-  }
-`
-
-const StyledEventLocation = styled.div`
-  @media (min-width: 748px) {
-    max-width: 40%;
   }
 `
