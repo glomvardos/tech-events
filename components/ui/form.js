@@ -10,6 +10,7 @@ function Form({ onSubmitHandler, event, jwt }) {
   const [showModal, setShowModal] = useState(false)
   const [inputs, setInputs] = useState({
     title: event ? event.title : '',
+    address: event ? event.address : '',
     date: event ? event.date : '',
     time: event ? event.time : '',
     brief: event ? event.brief : '',
@@ -56,6 +57,17 @@ function Form({ onSubmitHandler, event, jwt }) {
             type='text'
             placeholder='Event Title'
             value={inputs.title}
+            onChange={inputHandler}
+          />
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledLabel htmlFor='address'>Address</StyledLabel>
+          <StyledInput
+            name='address'
+            id='address'
+            type='text'
+            placeholder='Event Address'
+            value={inputs.address}
             onChange={inputHandler}
           />
         </StyledInputContainer>

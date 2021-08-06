@@ -8,6 +8,7 @@ export default BgImage
 
 const StyledBgImage = styled.div`
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   background-image: ${({ image }) => `url(${image})`};
   background-repeat: no-repeat;

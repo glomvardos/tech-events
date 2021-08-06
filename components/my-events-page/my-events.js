@@ -31,7 +31,6 @@ function MyEvents({ events, jwt }) {
           throw new Error('Failed to delete event.')
         }
         if (response.ok) {
-          toast.success('Success! The event has been deleted.')
           router.reload()
         }
       }
