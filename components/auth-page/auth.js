@@ -51,7 +51,7 @@ function Auth() {
     //Sign up
     if (!isLogin) {
       try {
-        const response = await fetch('api/signup', {
+        const response = await fetch('/api/signup', {
           method: 'POST',
           body: JSON.stringify({
             username: usernameInput,
@@ -85,7 +85,7 @@ function Auth() {
     // Login
     if (isLogin) {
       try {
-        const response = await fetch(`api/login`, {
+        const response = await fetch(`/api/login`, {
           method: 'POST',
           body: JSON.stringify({
             identifier: emailInput,

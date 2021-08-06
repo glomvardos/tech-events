@@ -42,6 +42,7 @@ function AddEvent({ jwt }) {
         // Clear input fields and redirect to the event
         fn({
           title: '',
+          address: '',
           date: '',
           time: '',
           brief: '',

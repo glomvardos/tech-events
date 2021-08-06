@@ -16,7 +16,7 @@ function Header() {
   }, [])
 
   async function logoutHandler() {
-    const response = await fetch('api/logout', {
+    const response = await fetch('/api/logout', {
       method: 'POST',
     })
     const data = await response.json()

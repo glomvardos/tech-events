@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import AllEvents from '../../components/events/all-events/all-events'
 import Pagination from '../../components/pagination/pagination'
 
@@ -5,9 +6,15 @@ const EVENTS_PER_PAGE = 6
 
 function AllEventsPage({ allEvents, page, total }) {
   return (
-    <AllEvents allEvents={allEvents} text='Events'>
-      <Pagination page={page} total={total} perPage={EVENTS_PER_PAGE} />
-    </AllEvents>
+    <>
+      <Head>
+        <meta name='description' content='Here you can find all the events' />
+        <title>Tech Events - Events</title>
+      </Head>
+      <AllEvents allEvents={allEvents} text='Events'>
+        <Pagination page={page} total={total} perPage={EVENTS_PER_PAGE} />
+      </AllEvents>
+    </>
   )
 }
 

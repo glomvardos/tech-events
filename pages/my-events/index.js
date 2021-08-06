@@ -1,8 +1,16 @@
+import Head from 'next/head'
 import MyEvents from '../../components/my-events-page/my-events'
 import { getToken } from '../../helpers/getToken'
 
 function MyEventsPage({ events, jwt }) {
-  return <MyEvents events={events} jwt={jwt} />
+  return (
+    <>
+      <Head>
+        <title>Tech Events - My Events</title>
+      </Head>
+      <MyEvents events={events} jwt={jwt} />
+    </>
+  )
 }
 
 export default MyEventsPage

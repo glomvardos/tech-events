@@ -1,8 +1,16 @@
+import Head from 'next/head'
 import EditEvent from '../../../components/edit-event-page/edit-event'
 import { getToken } from '../../../helpers/getToken'
 
 function EditEventPage({ event, jwt }) {
-  return <EditEvent event={event} jwt={jwt} />
+  return (
+    <>
+      <Head>
+        <title>Tech Events - Edit Event</title>
+      </Head>
+      <EditEvent event={event} jwt={jwt} />
+    </>
+  )
 }
 
 export default EditEventPage

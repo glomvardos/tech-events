@@ -2,7 +2,7 @@ import { authActions } from './auth-slice'
 
 export const checkUser = () => {
   return async dispatch => {
-    const response = await fetch('api/user')
+    const response = await fetch(`/api/user`)
     const data = await response.json()
 
     if (response.ok) {

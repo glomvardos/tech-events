@@ -1,36 +1,45 @@
+import Head from 'next/head'
 import Event from '../../components/event-page/event-page'
 
 function EventPage({ event }) {
-  return <Event event={event} />
+  return (
+    <>
+      <Head>
+        <meta name='description' content={event.brief} />
+        <title>{`Tech Events - ${event.title}`}</title>
+      </Head>
+      <Event event={event} />
+    </>
+  )
 }
 
 export default EventPage
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const {
     params: { slug },
   } = context
 
-  const response = await fetch(`${process.env.API_URL}/events`)
+  const response = await fetch(`${process.env.API_URL}/events?slug=${slug[1]}`)
   const data = await response.json()
-  const findEvent = data.find(e => e.slug === slug[1])
+
   return {
     props: {
-      event: findEvent,
+      event: data[0] || [],
     },
-    revalidate: 1,
+    // revalidate: 1,
   }
 }
 
-export async function getStaticPaths() {
-  const response = await fetch(`${process.env.API_URL}/events`)
-  const data = await response.json()
-  const slugPaths = data.map(e => ({
-    params: { slug: ['event', e.slug] },
-  }))
+// export async function getStaticPaths() {
+//   const response = await fetch(`${process.env.API_URL}/events`)
+//   const data = await response.json()
+//   const slugPaths = data.map(e => ({
+//     params: { slug: ['event', e.slug] },
+//   }))
 
-  return {
-    paths: slugPaths,
-    fallback: 'blocking',
-  }
-}
+//   return {
+//     paths: slugPaths,
+//     fallback: 'blocking',
+//   }
+// }
