@@ -70,7 +70,7 @@ const StyledContainer = styled.form`
 const StyledInput = styled.input`
   width: 100%;
   border: none;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 
   &::placeholder {
     font-size: 1.2rem;
